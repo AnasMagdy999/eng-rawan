@@ -1,0 +1,104 @@
+﻿@using AnasMagdy.ViewModels
+@using AnasMagdy.Controllers
+@model AnasMagdy.ViewModels.ProjectTaskVM
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Project</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TeamMember_ID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TeamMember_ID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <h2>Tasks</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Task Title
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Priority
+                </th>
+                <th>
+                    Deadline
+                </th>
+                <th>
+                    Team member
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+         <tbody>
+            @foreach (var item in Model.tasksss)
+            {
+                <tr>
+                  
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Priorty)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Deadline)
+                    </td>
+                    <td>
+                        <a class="nav-link text-dark" asp-route-id="@item.TeamMemberID" asp-area="" asp-controller="TeamMember" asp-action="TeamMemberDetails">@item.TeamMember.Name</a>
+ 
+@*                         @Html.ActionLink($"{item.TeamMember.Name}", "TeamMemberDetails", new { id = item.TeamMemberID })
+ *@                    </td>
+                    <td>
+                        <a class="nav-link text-dark" asp-route-id="@item.Id" asp-area="" asp-controller="Task" asp-action="Edit">Editt</a>
+@*                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+ *@                      
+                    </td>
+                </tr>
+            }
+        </tbody> 
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
